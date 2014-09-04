@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.homeencounter.showingfeedback" version="20006" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.homeencounter.showingfeedback" version="2.0.6" versionCode="20006" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Showing Feedback</name>
     <description>
         Submit your showing feedback for a Home Encounter managed property using this convenient App. A feedback form will be converted to PDF and stored on the Notes and Attachments tab on the building level in PropertyWare.
@@ -8,8 +8,6 @@
         WisdomSol.net
     </author>
     
-    
-    <preference name="android-versionCode" value="20006" />
     <preference name="permissions" value="none" />
     <preference name="phonegap-version" value="3.5.0" />
     <preference name="orientation" value="default" />
