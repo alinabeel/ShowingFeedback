@@ -7,6 +7,9 @@
     <author email="info@wisdomsol.net" href="http://wisdomsol.net">
         WisdomSol.net
     </author>
+    
+    
+    <preference name="android-versionCode" value="20006" />
     <preference name="permissions" value="none" />
     <preference name="phonegap-version" value="3.5.0" />
     <preference name="orientation" value="default" />
