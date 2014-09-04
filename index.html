@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323-->
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+<title>Showing Feedback</title>
+<script type="text/javascript" src="cordova.js"></script>
+<!--<link rel="stylesheet" href="_assets/css/mobile-style.css">-->
+<!--<link rel="stylesheet" href="css/index.css">-->
+<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.3.min.css">
+<link rel="shortcut icon" href="images/favicon.ico">
+<!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">-->
+<style>
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+
+.ui-filter-inset {
+	margin-top: 0;
+}
+
+img, object{
+	max-height:90%;
+	max-width:90%;
+}
+
+	label.error {
+		color: red;
+		font-size: 16px;
+		font-weight: normal;
+		line-height: 1.4;
+		margin-top: 0.5em;
+		width: 100%;
+		float: none;
+	}
+	@media screen and (orientation: portrait) {
+		label.error {
+			margin-left: 0;
+			display: block;
+		}
+	}
+	@media screen and (orientation: landscape) {
+		label.error {
+			display: inline-block;
+			margin-left: 22%;
+		}
+	}
+	em {
+		color: red;
+		font-weight: bold;
+		padding-right: .25em;
+	}
+
+</style>
+</head>
+<body>
+<script type="text/javascript">document.body.style.display  = 'none';</script>
+<div data-role="page" id="loginScreen"  data-theme="a">
+  <div data-role="header" data-position="fixed" data-theme="a">
+    <h1><span style="color:#ED783A; font-weight:bold;">Home</span><span style="color:#092264;">Encounter</span></h1>
+  </div>
+  <!-- /header -->
+  <div role="main" class="ui-content">
+    <h2>Login Information:</h2>
+    <form id="frm_login" action="#" method="post" >
+      <div id="login_msg"></div>
+      <!--      <div id="login_preloader" class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div>-->
+      <div data-role="ui-field-contain">
+        <label for="email_address">Email:</label>
+        <input type="email" name="email_address" id="email_address" value="" placeholder="Enter your email address" autocomplete="off" required >
+      </div>
+      <div data-role="ui-field-contain">
+        <label for="user_password">Password:</label>
+        <input type="password" name="user_password" id="user_password" value="" placeholder="Enter your password" required>
+      </div>
+      <div data-role="ui-field-contain">
+        <label for="remember_me">Remember Me</label>
+        <input type="checkbox" name="remember_me" id="remember_me" checked="checked" >
+      </div>
+      <button class="ui-shadow ui-btn ui-corner-all ui-icon-user ui-btn-icon-left " data-theme="a" type="submit" id="login_submit" name="login_submit" style="background:#3388CC; color:white;">Login</button>
+      <button class="ui-shadow ui-btn ui-corner-all ui-btn-icon-left  ui-icon-power" type="button" onClick="navigator.app.exitApp();" style="background:orange; color:white;" >Exit</button>
+    </form>
+  </div>
+  <!-- /content -->
+  
+  <div data-role="footer" data-theme="a">
+    <h4>&copy; Home Encounter 2014</h4>
+  </div>
+  <!-- /footer --> 
+  
+</div>
+<!-- /page -->
+<div data-role="page" id="dashBoard"  data-theme="a">
+  <div data-role="header" data-position="fixed" data-theme="a"> <a href="#dashBoard" data-icon="home" data-iconpos="notext">Home</a> <a href="#right-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+    <h1><span style="color:#ED783A; font-weight:bold;">Home</span><span style="color:#092264;">Encounter</span></h1>
+  </div>
+  <!-- /header -->
+  <div role="main" class="jqm-content ui-content"> <a class="ui-btn ui-shadow ui-corner-all" href="#agentFormScreen" onClick="loadAgentForm();" >Showing Feedback</a> <a class="ui-btn ui-shadow ui-corner-all" href="#reportsScreen"  >Reports</a> </div>
+  <!-- /content -->
+  <div data-role="footer" data-theme="a">
+    <h4>&copy; Home Encounter 2014</h4>
+  </div>
+  <!-- /footer --> 
+  
+</div>
+<!-- /page -->
+<div data-role="page" id="reportsScreen"  data-theme="a">
+  <div data-role="header" data-position="fixed" data-theme="a"> <a href="#dashBoard" data-icon="home" data-iconpos="notext">Home</a> <a href="#right-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+    <h1><span style="color:#ED783A; font-weight:bold;">Home</span><span style="color:#092264;">Encounter</span></h1>
+  </div>
+  <!-- /header -->
+  
+  <div role="main" class="jqm-content ui-content"> <a class="ui-btn ui-shadow ui-corner-all" href="#report1" >Report 1</a> <a class="ui-btn ui-shadow ui-corner-all" href="#report2"  >Report 2</a> </div>
+  <!-- /content -->
+  <div data-role="footer" data-theme="a">
+    <h4>&copy; Home Encounter 2014</h4>
+  </div>
+  <!-- /footer --> 
+  
+</div>
+<!-- /page -->
+<div data-role="page" id="agentFormScreen" data-theme="a">
+  <div data-role="header" data-position="fixed" data-theme="a"> <a href="#dashBoard" data-icon="home" data-iconpos="notext">Home</a> <a href="#right-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+    <h1><span style="color:#ED783A; font-weight:bold;">Home</span><span style="color:#092264;">Encounter</span></h1>
+  </div>
+  <!-- /header -->
+  
+  <div role="main" class="jqm-content ui-content">
+    <div data-role="popup" id="msgPopupDiv" class="jqm-content ui-content" data-theme="a" data-overlay-theme="a" >
+      <p>*</p>
+    </div>
+    <h2>Showing Feedback Form</h2>
+    <form id="frm_form_data" action="#" method="post" enctype="multipart/form-data" >
+      <input type="hidden" name="agent_name" id="agent_name" value="" >
+      <input type="hidden" name="agent_email" id="agent_email" value="" >
+      <input type="hidden" name="agent_password" id="agent_password" value="" >
+      <input type="hidden" name="building_id" id="building_id" value="" >
+      <input type="hidden" name="single_unit_id" id="single_unit_id" value="" >
+      <input type="hidden" name="unit_abbreviation" id="unit_abbreviation" value="" >
+      <input type="hidden" name="unit_type" id="unit_type" value="" >
+      <input type="hidden" name="timestamp" id="timestamp" value="000" >
+      <div id="form_data_msg"></div>
+      <!--<div id="form_preloader" class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div>-->
+      <p>
+        <input type="search" name="property_address" id="property_address" value="" placeholder="Property address" onChange="checkPropertyUnits(this);" required autofocus autocomplete="off"  >
+      </p>
+      <ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true"  data-filter-placeholder="Property address" data-filter-theme="a" data-input="#property_address">
+      </ul>
+      <p id="multi_units_block" style="display:none;">
+        <select name="multi_unit_id" id="multi_unit_id"  >
+          <option value="" selected="selected" >Select Property Address Units List</option>
+        </select>
+      </p>
+      <div class="ui-field-contain">
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+          <legend>Curb Appeal:</legend>
+          <input name="curb_appeal" id="curb_appeal_poor" value="1" type="radio">
+          <label for="curb_appeal_poor">Poor</label>
+          <input name="curb_appeal" id="curb_appeal_fair" value="2" type="radio">
+          <label for="curb_appeal_fair">Fair</label>
+          <input name="curb_appeal" id="curb_appeal_good" value="3" type="radio">
+          <label for="curb_appeal_good">Good</label>
+        </fieldset>
+      </div>
+      <div class="ui-field-contain">
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+          <legend>Yard / Landscaping:</legend>
+          <input name="yard_landscaping" id="yard_landscaping_poor" value="1" type="radio">
+          <label for="yard_landscaping_poor">Poor</label>
+          <input name="yard_landscaping" id="yard_landscaping_fair" value="2" type="radio">
+          <label for="yard_landscaping_fair">Fair</label>
+          <input name="yard_landscaping" id="yard_landscaping_good" value="3" type="radio">
+          <label for="yard_landscaping_good">Good</label>
+        </fieldset>
+      </div>
+      <div class="ui-field-contain">
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+          <legend>Cleanliness:</legend>
+          <input name="cleanliness" id="cleanliness_poor" value="1" type="radio">
+          <label for="cleanliness_poor">Poor</label>
+          <input name="cleanliness" id="cleanliness_fair" value="2" type="radio">
+          <label for="cleanliness_fair">Fair</label>
+          <input name="cleanliness" id="cleanliness_good" value="3" type="radio">
+          <label for="cleanliness_good">Good</label>
+        </fieldset>
+      </div>
+      <div class="ui-field-contain">
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+          <legend>Appliances:</legend>
+          <input name="appliances" id="appliances_poor" value="1" type="radio">
+          <label for="appliances_poor">Poor</label>
+          <input name="appliances" id="appliances_fair" value="2" type="radio">
+          <label for="appliances_fair">Fair</label>
+          <input name="appliances" id="appliances_good" value="3" type="radio">
+          <label for="appliances_good">Good</label>
+        </fieldset>
+      </div>
+      <div class="ui-field-contain">
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+          <legend>Fixtures:</legend>
+          <input name="fixtures" id="fixtures_poor" value="1" type="radio">
+          <label for="fixtures_poor">Poor</label>
+          <input name="fixtures" id="fixtures_fair" value="2" type="radio">
+          <label for="fixtures_fair">Fair</label>
+          <input name="fixtures" id="fixtures_good" value="3" type="radio">
+          <label for="fixtures_good">Good</label>
+        </fieldset>
+      </div>
+      <div class="ui-field-contain">
+        <legend>Highlights:</legend>
+        <textarea name="highlights" id="highlights" placeholder="Highlights" ></textarea>
+      </div>
+      <div class="ui-field-contain">
+        <legend>Lowlights:</legend>
+        <textarea name="lowlights" id="lowlights" placeholder="Lowlights" ></textarea>
+      </div>
+      <div class="ui-field-contain">
+        <legend>Maintenance Required:</legend>
+        <textarea name="maintenance_required" id="maintenance_required" placeholder="Maintenance Required" ></textarea>
+      </div>
+      
+      <!--      <div class="ui-field-contain">
+        <legend>Take Photo:</legend>
+        <a onclick="capturePhoto();" class="ui-btn ui-icon-camera ui-btn-icon-left ui-shadow ui-corner-all">Take Photo</a> <br>
+      </div>-->
+      
+      <div class="ui-field-contain">
+        <label for="lock_box">Lock Box:</label>
+        <select name="lock_box" id="lock_box" data-role="slider" data-mini="true">
+          <option value="no" selected >No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+      <div class="ui-field-contain">
+        <label for="sign">Sign:</label>
+        <select name="sign" id="sign" data-role="slider" data-mini="true">
+          <option value="no" selected >No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+      <div class="ui-field-contain">
+        <label for="recomended_rent_rate">Recomended Rent: <strong>$</strong></label>
+        <input name="recommended_rent_rate" pattern="[0-9]*" id="recommended_rent_rate" value="" type="number" placeholder="Recommended Rent Rate" required   />
+      </div>
+      <!--<a href="#" class="ui-shadow ui-btn ui-corner-all " id="feedback_submit" onClick="submitFormInit();"  >Submit</a>-->
+      <button class="ui-shadow ui-btn ui-corner-all " type="submit" id="feedback_submit" name="feedback_submit" >Submit </button>
+    </form>
+  </div>
+  <!-- /content -->
+  <div data-role="footer" data-theme="a">
+    <h4>&copy; Home Encounter 2014</h4>
+  </div>
+  <!-- /footer --> 
+</div>
+<!-- /page -->
+
+<div data-role="page" id="agentUpload" data-theme="a">
+  <div data-role="header" data-position="fixed" data-theme="a"> <a href="#dashBoard" data-icon="home" data-iconpos="notext">Home</a> <a href="#right-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+    <h1><span style="color:#ED783A; font-weight:bold;">Home</span><span style="color:#092264;">Encounter</span></h1>
+  </div>
+  <!-- /header -->
+  
+  <div role="main" class="jqm-content ui-content">
+    <h2>Attach Photos to your Feedback</h2>
+    <div class="ui-field-contain">
+      <legend>Select Photo:</legend>
+      
+      <!--
+      <div data-role="popup" id="popupMenu" data-theme="b">
+        <ul data-role="listview" data-inset="true" style="min-width:210px;">
+            <li data-role="list-divider">Add a photo</li>
+            <li><a href="#">Take Photo</a></li>
+            <li><a href="#">Chose Existing Photo</a></li>
+            <li><a href="#">Delete</a></li>
+            <li><a href="#" data-rel="back" >Cancel</a></li>
+        </ul>
+	</div>
+
+   <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <a href="#popupMenu" data-rel="popup" data-transition="slideup" class="ui-btn ui-corner-all ui-shadow">1</a><br>
+      </div>
+      <div class="ui-block-b">
+        <a href="#popupMenu" data-rel="popup" data-transition="slideup" class="ui-btn ui-corner-all ui-shadow">2</a><br>
+      </div>
+    </div>
+
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <a href="#popupMenu" data-rel="popup" data-transition="slideup" class="ui-btn ui-corner-all ui-shadow">3</a><br>
+      </div>
+      <div class="ui-block-b">
+        <a href="#popupMenu" data-rel="popup" data-transition="slideup" class="ui-btn ui-corner-all ui-shadow">4</a><br>
+      </div>
+    </div>--> 
+    <div class="ui-field-contain">
+      <div id="photo_container"></div>
+    </div>
+    
+	<a onclick="getPhoto(pictureSource.PHOTOLIBRARY);" class="ui-btn ui-icon-camera ui-btn-icon-left ui-shadow ui-corner-all">Select Photo</a> </div>    
+    
+    <div class="ui-grid-solo" id="progressbar" style="display:none;"> </div>
+    <div class="ui-grid-solo"> <a onclick="uploadPhoto();" class="ui-btn ui-shadow ui-corner-all" style="background: orange; color: white;">Upload</a> </div>
+    <div class="ui-grid-a">
+      <div class="ui-block-a"> <a href="#agentFormScreen" class="ui-shadow ui-btn ui-corner-all">Back</a> </div>
+      <div class="ui-block-b">
+	    <a href="#" id="post_button" onClick="postFeedback();" class="ui-shadow ui-btn ui-corner-all" style="background: green; color: white;">Post Feedback</a>
+      </div>
+    </div>
+  </div>
+  <!-- /content -->
+  <div data-role="footer" data-theme="a">
+    <h4>&copy; Home Encounter 2014</h4>
+  </div>
+  <!-- /footer --> 
+</div>
+<!-- /page -->
+
+<div data-role="page" id="thanksScreen" data-theme="a">
+  <div data-role="header" data-position="fixed" data-theme="a"> <a href="#dashBoard" data-icon="home" data-iconpos="notext">Home</a> <a href="#right-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+    <h1><span style="color:#ED783A; font-weight:bold;">Home</span><span style="color:#092264;">Encounter</span></h1>
+  </div>
+  <!-- /header -->
+  
+  <div role="main" class="jqm-content ui-content">
+    <div style="color:green;">Thank you for your survey & feedback. </div>
+    <div id="pdf_link" style="color:#122A6A;"></div>
+    <div>
+      <button class="ui-shadow ui-btn ui-corner-all " type="button" id="submit" name="closeThanks" onClick="closeThanksScreen()" >Back to Home Page </button>
+    </div>
+  </div>
+  <!-- /content -->
+  <div data-role="footer" data-theme="a">
+    <h4>&copy; Home Encounter 2014</h4>
+  </div>
+  <!-- /footer --> 
+  
+</div>
+<!-- /page -->
+
+<div data-role="panel" id="right-panel" data-theme="b" data-position="right">
+  <ul data-role="listview">
+    <li data-icon="back"><a href="#" data-rel="close">Close</a></li>
+    <li><a class="ui-btn ui-corner-all ui-shadow ui-mini ui-icon-delete ui-btn-icon-right" onClick="signout();">Sign Out</a></li>
+    <li><a class="ui-btn ui-corner-all ui-shadow ui-mini ui-icon-power ui-btn-icon-right" onClick="navigator.app.exitApp();">Exit</a></li>
+  </ul>
+</div>
+<!--/panel--> 
+<script src="js/jquery.js"></script> 
+<script src="js/jquery.mobile-1.4.3.min.js"></script> 
+<script type="text/javascript" src="js/agent_feedback.js"></script> 
+<script src="js/jquery.validate.min.js"></script> 
+
+<script>
+	$( document ).on( "pagecreate", function() {
+		$( "body > [data-role='panel']" ).panel();
+		$( "body > [data-role='panel'] [data-role='listview']" ).listview();
+	});
+//	$( document ).one( "pageshow", function() {
+//		$( "body > [data-role='header']" ).toolbar();
+//		$( "body > [data-role='header'] [data-role='navbar']" ).navbar();
+//		$( "body > [data-role='footer']" ).toolbar();
+//	});
+//window.location='./main.html';	
+	 app.initialize();
+</script>
+</body>
+</html>

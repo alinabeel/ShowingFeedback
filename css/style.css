@@ -1,0 +1,58 @@
+#splashScreen {
+	display:none;
+}
+.splash_block{
+	background:#ED7E44; 
+	height:100vh; 
+	width:100vw; 
+	display:table-cell; 
+	vertical-align:middle; 
+	text-align:center;
+/*	width:auto 100vw;
+	height:auto 100vh;
+*/	
+}
+
+#homeScreen{
+	display:block;
+}
+
+#loginScreen{
+	display:block;
+}
+
+#agentFormScreen{
+	display:none;
+}
+
+#login_msg{
+	display:none;
+	color:#F00;
+}
+#form_preloader {
+	display:none;
+/*	left:13%;
+	top:31%;
+	float:left;	
+	position:fixed;*/
+}
+
+#login_preloader {
+	display:none;	
+}
+
+#multi_units_block {
+	display:none;	
+}
+
+#thanksScreen{
+	display:none;	
+}
+.thanksScreenBlock {
+	background:#F1BE81;
+	border-bottom:solid 3px #ED783A;  
+	width:100vw; 
+	display:table-cell; 
+	text-align:left;
+	padding:20px;
+}
