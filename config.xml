@@ -20,18 +20,17 @@
     <preference name="detect-data-types" value="true" />
     <preference name="exit-on-suspend" value="false" />
     <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="splash-screen-duration" value="3000" /> 
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
 
     <gap:plugin name="org.apache.cordova.camera" />
-    <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.console" />
     <gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="org.apache.cordova.file" />
     <gap:plugin name="org.apache.cordova.file-transfer" />
-    <gap:plugin name="org.apache.cordova.media" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
 
     <icon src="icon.png" />
@@ -40,8 +39,8 @@
     <icon gap:platform="android" gap:qualifier="hdpi" src="res/icon/android/icon-72-hdpi.png" />
     <icon gap:platform="android" gap:qualifier="xhdpi" src="res/icon/android/icon-96-xhdpi.png" />
 
-    <icon gap:platform="ios" height="57" src="res/icon/ios/Icon-Small.png" width="57" />
-    <icon gap:platform="ios" height="72" src="res/icon/ios/Icon-Small@2x.png" width="72" />
+    <icon gap:platform="ios" height="57" src="res/icon/ios/icon-Small.png" width="57" />
+    <icon gap:platform="ios" height="72" src="res/icon/ios/icon-Small@2x.png" width="72" />
     <icon gap:platform="ios" height="114" src="res/icon/ios/icon-57-2x.png" width="114" />
     <icon gap:platform="ios" height="144" src="res/icon/ios/icon-72-2x.png" width="144" />
 
